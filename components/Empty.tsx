@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 export default function Empty() {
   return (
@@ -9,6 +9,7 @@ export default function Empty() {
         style={styles.image}
         resizeMode="contain"
       />
+      <Text style={styles.description}>할일이 없어요</Text>
     </View>
   );
 }
@@ -20,10 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   description: {
-    fontSize: 24,
+    fontSize: 20,
     color: '#9e9e9e',
   },
   image: {
-    height: 300,
+    height: 70,
   },
 });
