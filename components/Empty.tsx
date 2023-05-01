@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 
 export default function Empty() {
   return (
     <View style={styles.block}>
-      <Text style={styles.description}>할일이 없습니다</Text>
+      <Image
+        source={require('../assets/images/rabbit.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
     </View>
   );
 }
@@ -18,5 +22,8 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 24,
     color: '#9e9e9e',
+  },
+  image: {
+    height: 300,
   },
 });
