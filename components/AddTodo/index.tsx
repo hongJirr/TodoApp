@@ -9,17 +9,19 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
+import {IAppTodo} from './Apptodo.types';
 
-export default function AddTodo() {
+export default function AddTodo({onInsert}: IAppTodo) {
   const [text, setText] = useState('');
   const onPress = () => {
+    onInsert(text);
     setText('');
     Keyboard.dismiss();
   };
   const Button = (
     <View style={styles.buttonStyle}>
       <Image
-        source={require('../assets/images/add.png')}
+        source={require('../../assets/images/add.png')}
         style={styles.image}
       />
     </View>
