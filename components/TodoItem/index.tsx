@@ -5,8 +5,10 @@ import {ITodos} from '../TodoList/TodoList.type';
 export default function TodoItem({todo}: {todo: ITodos}) {
   return (
     <View style={styles.item}>
-      <View style={styles.circle} />
-      <Text style={styles.text}>{todo.text}</Text>
+      <View style={[styles.circle, todo.done && styles.fill]} />
+      <Text style={[styles.text, todo.done && styles.lineThrough]}>
+        {todo.text}
+      </Text>
     </View>
   );
 }
@@ -23,6 +25,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     marginRight: 26,
+  },
+  fill: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#EF9A9A',
+  },
+  lineThrough: {
+    color: '#9e9e9e',
+    textDecorationLine: 'line-through',
   },
   text: {
     flex: 1,

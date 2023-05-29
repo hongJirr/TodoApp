@@ -10,7 +10,7 @@ function App(): JSX.Element {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: '작업환경 설정',
+      text: '작업환경 설정2',
       done: true,
     },
     {id: 2, text: '리액트네이티브 기초 공부', done: false},
