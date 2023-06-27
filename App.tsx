@@ -6,8 +6,13 @@ import AddTodo from './components/AddTodo';
 import Empty from './components/Empty';
 import TodoList from './components/TodoList';
 
+interface ITodos {
+  id: number;
+  text: string;
+  done: boolean;
+}
 function App(): JSX.Element {
-  const [todos, setTodos] = useState([
+  const [todos, setTodos] = useState<ITodos[]>([
     {
       id: 1,
       text: '작업환경 설정2',
@@ -32,6 +37,15 @@ function App(): JSX.Element {
     setTodos(todos.concat(todo));
   };
 
+  // 할일 toggle 기능 추가
+  const onToggle = (id: number) => {
+    console.debug(id);
+    const nextTodos: ITodos[] = todos.map((todo: ITodos) =>
+      todo.id === id ? {...todo, done: !todo.done} : todo,
+    );
+    setTodos(nextTodos);
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView edges={['bottom']} style={styles.block}>
@@ -41,7 +55,7 @@ function App(): JSX.Element {
           style={styles.avoid}>
           <DateHead />
           {todos.length === 0 && <Empty />}
-          <TodoList todos={todos} />
+          <TodoList todos={todos} onToggle={onToggle} />
           <AddTodo onInsert={insertTodo} />
         </KeyboardAvoidingView>
       </SafeAreaView>

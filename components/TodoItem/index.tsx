@@ -1,11 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {ITodos} from '../TodoList/TodoList.type';
 
-export default function TodoItem({todo}: {todo: ITodos}) {
+export default function TodoItem({
+  todo,
+  onToggle,
+}: {
+  todo: ITodos;
+  onToggle: (id: number) => void;
+}) {
   return (
     <View style={styles.item}>
-      <View style={[styles.circle, todo.done && styles.fill]} />
+      <TouchableOpacity onPress={() => onToggle(todo.id)}>
+        <View style={[styles.circle, todo.done && styles.fill]} />
+      </TouchableOpacity>
+
       <Text style={[styles.text, todo.done && styles.lineThrough]}>
         {todo.text}
       </Text>

@@ -1,9 +1,15 @@
 import React from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import {FlatList, View, StyleSheet, Text} from 'react-native';
 import TodoItem from '../TodoItem';
 import {ITodos} from './TodoList.type';
 
-export default function TodoList({todos}: {todos: ITodos[]}) {
+export default function TodoList({
+  todos,
+  onToggle,
+}: {
+  todos: ITodos[];
+  onToggle: (id: number) => void;
+}) {
   return (
     <FlatList
       ItemSeparatorComponent={() => <View style={styles.seperator} />}
@@ -11,10 +17,11 @@ export default function TodoList({todos}: {todos: ITodos[]}) {
       data={todos}
       renderItem={({item}: {item: ITodos}) => (
         <View>
-          <TodoItem todo={item} />
+          <Text>{item.id}</Text>
+          <TodoItem todo={item} onToggle={onToggle} />
         </View>
       )}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={item => String(item.id)}
     />
   );
 }
